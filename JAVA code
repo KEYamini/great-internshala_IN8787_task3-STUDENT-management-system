@@ -1,0 +1,72 @@
+import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+
+class Student {
+  private String name;
+  private int rollNumber;
+
+  public Student(String name, int rollNumber) {
+    this.name = name;
+    this.rollNumber = rollNumber;
+  }
+
+  public String getUserName() {
+    return name;
+  }
+
+  public int getRollNumber() {
+    return rollNumber;
+  }
+}
+
+public class StudentManagement {
+  private List<Student> students;
+
+  public StudentManagement() {
+    students = new ArrayList<>();
+  }
+
+  public void addStudent(String name, int rollNumber) {
+    Student student = new Student(name, rollNumber);
+    students.add(student);
+  }
+
+  public void displayNow() {
+    System.out.println("This is student Details ");
+    for (Student student : students) {
+      System.out.println("Your Name is : " + student.getUserName() + ", Roll Number is : " + student.getRollNumber());
+    }
+  }
+
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    StudentManagement system = new StudentManagement();
+    while (true) {
+      System.out.println("This is A student Details ");
+      System.out.println("1. ADD student name : ");
+      System.out.println("2. Display student details : ");
+      System.out.println("3. Exit Your choice : ");
+      System.out.println("Enter Your choice : ");
+      int choice = sc.nextInt();
+      switch (choice) {
+        case 1:
+          System.out.println("Enter user name :");
+          String userName = sc.next();
+          System.out.println("Enter roll number :");
+          int rollNumber = sc.nextInt();
+          system.addStudent(userName, rollNumber);
+          break;
+        case 2:
+          system.displayNow();
+          break;
+        case 3:
+          System.out.println("Exit");
+          System.exit(0);
+          break;
+        default:
+          System.out.println("Invalid choice");
+      }
+    }
+  }
+}
